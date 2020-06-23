@@ -12,8 +12,18 @@ class App extends React.Component() {
 
   render() {
     return (
-      <main className='App'>
-      </main>
+      <div className='App'>
+        <header>
+          <h1>Notful</h1>
+        </header>
+        <section className="side-bar">
+
+        </section>
+        <main>
+
+        </main>
+      </div>
+
     );
   }
 }
