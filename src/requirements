@@ -47,12 +47,12 @@
 
   - Header
   - SideBar
-    - FolderNav
-    - AddFolderButton
+    - FolderList
+    - Fodler
     - BackButton(will include folder title)
   - MainSection
-    - NoteListing
-    - AddNoteButton
+    - NoteList
+    - Note
     - NoteDescription
 
 

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom'
 import dummyData from './data';
+import FolderList from './FolderList/FolderList'
+import NoteList from './NoteList/NoteList'
+import './App.css';
 
-class App extends React.Component() {
+
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,18 +14,27 @@ class App extends React.Component() {
     };
   }
 
+  //delete ()
+
   render() {
     return (
       <div className='App'>
         <header>
-          <h1>Notful</h1>
+          <Link to='/'>Noteful</Link>
         </header>
-        <section className="side-bar">
-
-        </section>
-        <main>
-
-        </main>
+        <div className="flex-container">
+          <section className="column sidebar">
+            <Route exact path="/" render={(data) => (
+              <FolderList data={this.state.data} />
+            )} />
+            <Route exact path="/folder/:folderId" component={FolderList} />
+          </section>
+          <main className="colomn">
+            <Route exact path="/" render={(data) => (
+              <NoteList data={this.state.data} />
+            )} />
+          </main>
+        </div>
       </div>
 
     );
