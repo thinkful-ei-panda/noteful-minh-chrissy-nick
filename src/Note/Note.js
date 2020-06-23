@@ -1,17 +1,19 @@
 import React from 'react';
 import './Note.css';
+import { Link } from 'react-router-dom'
 
 export default function Note(props) {
   return (
     <li
       onClick={() => console.log(props.name)}
       className='note-container'>
-      <div className='Note__description'>
-        <h3>{props.name}</h3>
-      </div>
-      <div className='Note__description'>
+      <Link to={`/note/${props.id}`}>
+        <div>
+          <h3>{props.name}</h3>
+        </div>
+      </Link>
+      <div>
         <button
-          className='Note__description'
           onClick={() => props.onClickDelete(props.id)}
         >
           Delete

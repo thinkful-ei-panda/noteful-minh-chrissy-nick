@@ -14,8 +14,6 @@ class App extends React.Component {
     };
   }
 
-  //delete ()
-
   render() {
     return (
       <div className='App'>
@@ -24,15 +22,30 @@ class App extends React.Component {
         </header>
         <div className="flex-container">
           <section className="column sidebar">
-            <Route exact path="/" render={(data) => (
-              <FolderList data={this.state.data} />
+            <Route exact path="/" render={() => (
+              <FolderList data={this.state.data} isHome={true} />
             )} />
-            <Route exact path="/folder/:folderId" component={FolderList} />
+            <Route path="/folder/:folderId"
+              render={(props) => (
+                <FolderList data={this.state.data} isHome={false} test={props} />
+              )} />
+            <Route path="/note/:noteId"
+              render={(props) => (
+                <FolderList data={this.state.data} isHome={false} test={props} />
+              )} />
           </section>
           <main className="colomn">
-            <Route exact path="/" render={(data) => (
-              <NoteList data={this.state.data} />
+            <Route exact path="/" render={() => (
+              <NoteList data={this.state.data} isHome={true} />
             )} />
+            <Route path="/folder/:folderId"
+              render={(props) => (
+                <NoteList data={this.state.data} isHome={false} test={props} />
+              )} />
+            <Route path="/note/:noteId"
+              render={(props) => (
+                <NoteList data={this.state.data} isHome={false} test={props} />
+              )} />
           </main>
         </div>
       </div>
