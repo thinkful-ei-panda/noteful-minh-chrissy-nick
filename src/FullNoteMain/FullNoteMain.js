@@ -1,23 +1,28 @@
 import React from 'react';
 import Note from '../Note/Note'
+import NotefulContext from '../NotefulContext'
 
-export default function FolderList(props) {
-  console.log(props)
-  let noteObj = props.data.notes.find(note => note.id === props.test.match.params.noteId);
+export default class FolderList extends React.Component {
+  static contextType = NotefulContext;
 
-  let note = <Note
-    key={noteObj.id}
-    id={noteObj.id}
-    name={noteObj.name}
-    dateMod={noteObj.modified}
-  />
+  render() {
+    const { notes } = this.context;
+    let noteObj = notes.find(note => note.id === this.props.match.params.noteId);
 
-  return (
-    <div>
-      <section>
-        {note}
-        <p>{noteObj.content}</p>
-      </section>
-    </div>
-  )
+    let note = <Note
+      key={noteObj.id}
+      id={noteObj.id}
+      name={noteObj.name}
+      dateMod={noteObj.modified}
+    />
+
+    return (
+      <div>
+        <section>
+          {note}
+          <p>{noteObj.content}</p>
+        </section>
+      </div>
+    )
+  }
 }
