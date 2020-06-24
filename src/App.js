@@ -37,10 +37,13 @@ class App extends React.Component {
               )} />
           </section>
           <main className="colomn">
-            <Route exact path="/" render={() => (
-              <NoteList data={this.state.data} isHome={true} />
-            )} />
-            <Route path="/folder/:folderId"
+            <Route exact
+              path="/"
+              render={() => (
+                <NoteList data={this.state.data} isHome={true} />
+              )} />
+            <Route
+              path="/folder/:folderId"
               render={(props) => (
                 <NoteList data={this.state.data} isHome={false} test={props} />
               )} />
