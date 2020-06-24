@@ -12,6 +12,9 @@ export default function Note(props) {
           <h3>{props.name}</h3>
         </div>
       </Link>
+      <section>
+        <p>Last Modified: {props.dateMod}</p>
+      </section>
       <div>
         <button
           onClick={() => props.onClickDelete(props.id)}

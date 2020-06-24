@@ -11,7 +11,9 @@ export default function NoteList(props) {
         return <Note
           key={note.id}
           id={note.id}
-          name={note.name} />
+          name={note.name}
+          dateMod={note.modified}
+        />
       })
   } else {
     notes = props.data.notes.map(note => {
@@ -19,6 +21,7 @@ export default function NoteList(props) {
         key={note.id}
         id={note.id}
         name={note.name}
+        dateMod={note.modified}
       />
     })
   }
