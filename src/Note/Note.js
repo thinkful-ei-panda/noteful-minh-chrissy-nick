@@ -11,27 +11,9 @@ export default class Note extends React.Component {
   static contextType = NotefulContext;
 
   handleClickDelete = e => {
-    e.preventDefault()
+    e.preventDefault();
     const noteId = this.props.id;
-
-    fetch(`http://localhost:9090/notes/${noteId}`, {
-      method: 'DELETE',
-      headers: {
-        'content-type': 'application/json'
-      },
-    })
-      .then(res => {
-        if (!res.ok)
-          return res.json().then(e => Promise.reject(e))
-        return res.json()
-      })
-      .then(() => {
-        this.context.deleteNote(noteId)
-        this.props.onDeleteNote(noteId) //this basically just rerenders this component
-      })
-      .catch(error => {
-        console.error({ error })
-      })
+    this.context.deleteNote(noteId);
   }
 
   render() {
@@ -50,6 +32,7 @@ export default class Note extends React.Component {
         </section>
         <div>
           <button
+            type="button"
             onClick={this.handleClickDelete}
           >
             Delete
