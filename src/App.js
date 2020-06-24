@@ -22,22 +22,32 @@ class App extends React.Component {
     };
   }
 
+  //the state should always be hydrated by data from databse
+  //when we click delete somewhere else it should delete in databace first
+  //then another GET request that will refresh state
+  //this will trigger rerender
+
   handleDeleteNote = noteId => {
     this.setState({
       notes: this.state.notes.filter(note => note.id !== noteId)
     });
-    //the state should always be hydrated by data from databse
-    //when we click delete somewhere else it should delete in databace first
-    //then another GET request that will refresh state
-    //this will trigger rerender
   };
 
-  componentDidUpdate() {
-    //make a separate branch and look up how to make this work
-    //this will allow the removal of onDeleteNote in Note
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   //make a separate branch and look up how to make this work
+  //   //this will allow the removal of onDeleteNote in Note
+  //   console.log(prevState.notes)
+  //   console.log(this.state.notes)
+  //   if (prevState.notes !== this.state.notes || prevState.folders !== this.state.folders) {
+  //     this.sendGetRequest()
+  //   }
+  // }
 
   componentDidMount() {
+    this.sendGetRequest();
+  }
+
+  sendGetRequest() {
     Promise.all([
       fetch('http://localhost:9090/notes'),
       fetch('http://localhost:9090/folders')

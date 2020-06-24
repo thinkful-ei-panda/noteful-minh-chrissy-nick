@@ -46,7 +46,6 @@ export default class Note extends React.Component {
           </div>
         </Link>
         <section>
-          {/* add day later - look up date-fns*/}
           <p>Last Modified: {format(new Date(modified), 'MM/dd/yyyy')}</p>
         </section>
         <div>
