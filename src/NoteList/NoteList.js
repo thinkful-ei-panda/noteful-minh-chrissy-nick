@@ -38,7 +38,7 @@ export default class NoteList extends React.Component {
     let folderIdentity="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1";
     if (this.props.match.params.folderId) {
       folderIdentity=this.props.match.params.folderId
-    } else {
+    };
     return (
       <AddNote
         active={this.state.displayAddNote}
@@ -47,7 +47,7 @@ export default class NoteList extends React.Component {
       />
     )
   }
-}
+
 
   render() {
     const { notes } = this.context;
