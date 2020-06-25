@@ -27,6 +27,16 @@ class App extends React.Component {
   //then another GET request that will refresh state
   //this will trigger rerender
 
+  // handleDeleteNote = (noteId) => {
+  //   fetch(`http://localhost:9090/notes/${noteId}`, {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //     },
+  //   })
+  //     .then(this.sendGetRequest())
+  // };
+
   handleDeleteNote = (noteId) => {
     fetch(`http://localhost:9090/notes/${noteId}`, {
       method: 'DELETE',
@@ -34,30 +44,63 @@ class App extends React.Component {
         'content-type': 'application/json',
       },
     })
-      .then(this.sendGetRequest())
+      .then((res) => {
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then(() => this.sendGetRequest())
+      .catch(
+        error => this.setState({ error })
+      )
   };
 
+  handleCreateFolder = name => {
+    fetch(`http://localhost:9090/folders/` , {
+      method : 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body : JSON.stringify({
+        name : name
+      })
+    })
+    .then((res) => {
+      console.log(res);
+      if (!res.ok) return res.json().then((e) => Promise.reject(e));
+      return res.json();
+    })
+    .then(() => this.sendGetRequest())
+    .catch(
+      error => this.setState({ error })
+    )
+    .then(console.log("new folder is created"));
+  }
 
   componentDidMount() {
     this.sendGetRequest();
   }
 
+  // grabs notes and folders from server, then update state
   sendGetRequest() {
     Promise.all([
       fetch('http://localhost:9090/notes'),
       fetch('http://localhost:9090/folders')
     ])
+      // checks to make sure there are no errors in ajax responses
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok)
           return notesRes.json().then(e => Promise.reject(e));
         if (!foldersRes.ok)
           return foldersRes.json().then(e => Promise.reject(e));
 
+        // returns the notes and folders as json objects in an array
         return Promise.all([notesRes.json(), foldersRes.json()]);
       })
+      // sets state for both notes and folders
       .then(([notes, folders]) => {
         this.setState({ notes, folders });
       })
+      // error catch all
       .catch(error => {
         console.error({ error });
       });
@@ -67,7 +110,8 @@ class App extends React.Component {
     const value = {
       folders: this.state.folders,
       notes: this.state.notes,
-      deleteNote: this.handleDeleteNote
+      deleteNote: this.handleDeleteNote,
+      createFolder: this.handleCreateFolder
     };
     return (
       <NotefulContext.Provider value={value} >

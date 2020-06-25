@@ -3,8 +3,8 @@ import React from 'react'
 const BookmarksContext = React.createContext({
   folders: [],
   notes: [],
-  // addFolder: () => { },
-  // addNote: () => { },
+  addFolder: () => { },
+  addNote: () => { },
   deleteNote: () => { },
 })
 
