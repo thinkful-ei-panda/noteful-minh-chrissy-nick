@@ -55,25 +55,45 @@ class App extends React.Component {
   };
 
   handleCreateFolder = (name) => {
-    fetch(`http://localhost:9090/folders/` , {
-      method : 'POST',
+    fetch(`http://localhost:9090/folders/`, {
+      method: 'POST',
       headers: {
         'content-type': 'application/json',
       },
-      body : JSON.stringify({
-        name : name
+      body: JSON.stringify({
+        name: name
       })
     })
-    .then((res) => {
-      console.log(res);
-      if (!res.ok) return res.json().then((e) => Promise.reject(e));
-      return res.json();
+      .then((res) => {
+        console.log(res);
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then(() => this.sendGetRequest())
+      .catch(
+        error => this.setState({ error })
+      )
+      .then(console.log("new folder is created"));
+  }
+
+  handlePostRequest = (body, destination) => {
+    fetch(`http://localhost:9090/${destination}/`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(body)
     })
-    .then(() => this.sendGetRequest())
-    .catch(
-      error => this.setState({ error })
-    )
-    .then(console.log("new folder is created"));
+      .then((res) => {
+        console.log(res);
+        if (!res.ok) return res.json().then((e) => Promise.reject(e));
+        return res.json();
+      })
+      .then(() => this.sendGetRequest())
+      .catch(
+        error => this.setState({ error })
+      )
+      .then(console.log("new folder is created"));
   }
 
   componentDidMount() {
@@ -111,7 +131,7 @@ class App extends React.Component {
       folders: this.state.folders,
       notes: this.state.notes,
       deleteNote: this.handleDeleteNote,
-      createFolder: this.handleCreateFolder
+      post: this.handlePostRequest
     };
     return (
       <NotefulContext.Provider value={value} >

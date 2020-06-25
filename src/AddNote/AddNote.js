@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NotefulContext from "../NotefulContext.js";
 
-export default class AddFolder extends Component {
+export default class AddNote extends Component {
   constructor(props) {
     super(props);
     this.nameInput = React.createRef();
