@@ -5,6 +5,7 @@ export default class AddNote extends Component {
   constructor(props) {
     super(props);
     this.nameInput = React.createRef();
+    this.bodyInput = React.createRef();
   }
 
   static contextType = NotefulContext;
@@ -12,16 +13,23 @@ export default class AddNote extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.resetFunction();
-    this.context.post({ name: this.nameInput.current.value }, "folders");
+    const today = new Date();
+    this.context.post({ 
+      name: this.nameInput.current.value,
+      modified: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+      folderId: this.props.folderId,
+      content: this.bodyInput.current.value
+     }, "notes");
   }
 
   render() {
     if (this.props.active) {
       return (
-        <form className="add-folder" onSubmit={e => this.handleSubmit(e)}>
-          <label htmlFor="add-folder">Add Folder</label>
-          <input name="add-folder" id="add-folder" type="text" ref={this.nameInput}></input>
-          <input type="submit" value="Submit" id="add-folder-submit" />
+        <form className="add-note" onSubmit={e => this.handleSubmit(e)}>
+          <label htmlFor="add-note">Add Note</label>
+          <input name="note-name" id="note-name" type="text" ref={this.nameInput}></input>
+          <input name="note-body" id="note-body" type="text" ref={this.bodyInput}></input>
+          <input type="submit" value="Submit" id="add-note-submit" />
           {/* after we update the list and click submit we should set state in folderList back to false */}
         </form>
       );
