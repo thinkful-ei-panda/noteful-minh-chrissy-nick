@@ -5,11 +5,14 @@ import AddFolder from '../AddFolder/AddFolder'
 
 export default class FolderList extends React.Component {
   static contextType = NotefulContext;
-  message="";
-  handleAddFolder(){
-    this.message="display"
+
+  handleAddFolder(bool) {
+    if (bool)
+      return "display"
+    return "";
   }
   render() {
+    const message = this.handleAddFolder(true);
     const { folders } = this.context;
     let folderList = [];
 
@@ -34,8 +37,8 @@ export default class FolderList extends React.Component {
         <ul>
           {folderList}
         </ul>
-        <AddFolder message={this.message}/>
-        <button onClick={this.handleAddFolder}>Add Folder</button>
+        <AddFolder message={message} />
+        <button onClick={() => this.handleAddFolder(true)}>Add Folder</button>
       </div>
     )
   }
