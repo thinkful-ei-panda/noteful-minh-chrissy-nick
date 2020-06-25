@@ -18,6 +18,27 @@ export default class FolderList extends React.Component {
     })
   }
 
+  resetAddFolderState = () => {
+    this.setState({
+      displayAddFolder: false
+    })
+  }
+
+  renderCreateNewFolderButton() {
+    return (
+      <button onClick={this.handleAddFolder}>Add Folder</button>
+    )
+  }
+
+  renderNewFolderForm() {
+    return (
+      <AddFolder
+        active={this.state.displayAddFolder}
+        resetFunction={this.resetAddFolderState}
+      />
+    )
+  }
+
   render() {
     const { folders } = this.context;
     let folderList = [];
@@ -43,8 +64,8 @@ export default class FolderList extends React.Component {
         <ul>
           {folderList}
         </ul>
-        <AddFolder active={this.state.displayAddFolder} />
-        <button onClick={this.handleAddFolder}>Add Folder</button>
+        {this.state.displayAddFolder && this.renderNewFolderForm()}
+        {!this.state.displayAddFolder && this.renderCreateNewFolderButton()}
       </div>
     )
   }
