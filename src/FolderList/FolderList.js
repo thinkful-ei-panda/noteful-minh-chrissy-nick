@@ -43,7 +43,7 @@ export default class FolderList extends React.Component {
         <ul>
           {folderList}
         </ul>
-        <AddFolder message={this.state.displayAddFolder} />
+        <AddFolder active={this.state.displayAddFolder} />
         <button onClick={this.handleAddFolder}>Add Folder</button>
       </div>
     )
