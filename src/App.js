@@ -22,8 +22,8 @@ class App extends React.Component {
     };
   }
 
-  //the state should always be hydrated by data from databse
-  //when we click delete somewhere else it should delete in databace first
+  //the state should always be hydrated by data from database
+  //when we click delete somewhere else it should delete in database first
   //then another GET request that will refresh state
   //this will trigger rerender
 
@@ -54,7 +54,7 @@ class App extends React.Component {
       )
   };
 
-  handleCreateFolder = name => {
+  handleCreateFolder = (name) => {
     fetch(`http://localhost:9090/folders/` , {
       method : 'POST',
       headers: {
