@@ -3,6 +3,7 @@ import './Note.css';
 import { Link } from 'react-router-dom'
 import NotefulContext from '../NotefulContext'
 import format from 'date-fns/format'
+import PropTypes from 'prop-types'
 
 export default class Note extends React.Component {
   static defaultProps = {
@@ -41,4 +42,11 @@ export default class Note extends React.Component {
       </li>
     )
   }
+}
+
+Note.propTypes = {
+  key : PropTypes.string.isRequired,
+  id : PropTypes.string.isRequired,
+  name : PropTypes.string.isRequired,
+  dateMod : PropTypes.string.isRequired
 }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NotefulContext from "../NotefulContext.js";
+import PropTypes from 'prop-types'
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -36,4 +37,10 @@ export default class AddNote extends Component {
     }
     return <></>
   };
+}
+
+AddNote.propTypes = {
+  active : PropTypes.bool.isRequired,
+  folderId : PropTypes.string.isRequired,
+  resetFunction : PropTypes.func.isRequired
 }

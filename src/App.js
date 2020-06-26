@@ -5,6 +5,7 @@ import FolderList from './FolderList/FolderList'
 import NoteList from './NoteList/NoteList'
 import FullNoteMain from './FullNoteMain/FullNoteMain'
 import FullNoteSide from './FullNoteSide/FullNoteSide'
+import NotefulError from './ErrorBoundary/ErrorBoundary'
 import './App.css';
 
 //TO RUN Noteful JSON Server
@@ -140,32 +141,36 @@ class App extends React.Component {
             <Link to='/'>Noteful</Link>
           </header>
           <div className="flex-container">
-            <section className="column sidebar">
-              <Route
-                exact
-                path="/"
-                component={FolderList} />
-              <Route
-                path="/folder/:folderId"
-                component={FolderList} />
-              <Route
-                path="/note/:noteId"
-                component={FullNoteSide} />
-            </section>
-            <main className="colomn">
-              <Route exact
-                path="/"
-                component={NoteList} />
-              <Route
-                path="/folder/:folderId"
-                component={NoteList} />
-              <Route
-                path="/note/:noteId"
-                component={FullNoteMain} />
-            </main>
+            <NotefulError>
+              <section className="column sidebar">
+                <Route
+                  exact
+                  path="/"
+                  component={FolderList} />
+                <Route
+                  path="/folder/:folderId"
+                  component={FolderList} />
+                <Route
+                  path="/note/:noteId"
+                  component={FullNoteSide} />
+              </section>
+            </NotefulError>
+            <NotefulError>
+              <main className="colomn">
+                <Route exact
+                  path="/"
+                  component={NoteList} />
+                <Route
+                  path="/folder/:folderId"
+                  component={NoteList} />
+                <Route
+                  path="/note/:noteId"
+                  component={FullNoteMain} />
+              </main>
+            </NotefulError>
           </div>
         </div>
-      </NotefulContext.Provider >
+      </NotefulContext.Provider>
     );
   }
 }
