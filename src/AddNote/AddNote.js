@@ -28,8 +28,8 @@ export default class AddNote extends Component {
       return (
         <form className="add-note" onSubmit={e => this.handleSubmit(e)}>
           <label htmlFor="add-note">Add Note</label>
-          <input name="note-name" id="note-name" type="text" ref={this.nameInput}></input>
-          <input name="note-body" id="note-body" type="text" ref={this.bodyInput}></input>
+          <input name="note-name" id="note-name" type="text" ref={this.nameInput} required></input>
+          <input name="note-body" id="note-body" type="text" ref={this.bodyInput} required></input>
           <input type="submit" value="Submit" id="add-note-submit" />
           {/* after we update the list and click submit we should set state in folderList back to false */}
         </form>
