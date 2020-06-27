@@ -39,8 +39,8 @@ export default class AddNote extends Component {
   };
 }
 
-AddNote.propTypes = {
-  active : PropTypes.bool.isRequired,
-  folderId : PropTypes.string.isRequired,
-  resetFunction : PropTypes.func.isRequired
-}
+// AddNote.propTypes = {
+//   active : PropTypes.bool.isRequired,
+//   folderId : PropTypes.string.isRequired,
+//   resetFunction : PropTypes.func.isRequired
+// }

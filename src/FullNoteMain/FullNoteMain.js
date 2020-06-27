@@ -6,7 +6,7 @@ export default class FolderList extends React.Component {
   static contextType = NotefulContext;
 
   render() {
-    const { notes } = this.context;
+    const notes = this.context.notes;
     let noteObj = notes.find(note => note.id === this.props.match.params.noteId);
 
     let note = <Note

@@ -6,8 +6,12 @@ export default class FolderList extends React.Component {
 
   render() {
     const { folders, notes } = this.context;
-    const note = notes.find(note => note.id === this.props.match.params.noteId)
-    const folderId = note.folderId;
+    console.log(notes);
+    const noteObj = notes.find(note => note.id === this.props.match.params.noteId)
+    console.log(noteObj.id);
+    console.log(this.props.match.params.noteId);
+    console.log(noteObj);
+    const folderId = noteObj.folderId;
 
     const folderName = folders.find(folder => folder.id === folderId)
 
