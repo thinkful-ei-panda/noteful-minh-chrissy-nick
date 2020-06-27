@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NotefulContext from "../NotefulContext.js";
 import PropTypes from 'prop-types'
+import './AddNote.css';
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -26,10 +27,10 @@ export default class AddNote extends Component {
   render() {
     if (this.props.active) {
       return (
-        <form className="add-note" onSubmit={e => this.handleSubmit(e)}>
+        <form className="add-note note-form" onSubmit={e => this.handleSubmit(e)}>
           <label htmlFor="add-note">Add Note</label>
-          <input name="note-name" id="note-name" type="text" ref={this.nameInput} required></input>
-          <input name="note-body" id="note-body" type="text" ref={this.bodyInput} required></input>
+          <input name="note-name" id="note-name" type="text" ref={this.nameInput} placeholder={'Note Name'} required></input>
+          <input name="note-body" id="note-body" type="text" ref={this.bodyInput} placeholder={'Note Content'} required></input>
           <input type="submit" value="Submit" id="add-note-submit" />
           {/* after we update the list and click submit we should set state in folderList back to false */}
         </form>
