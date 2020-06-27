@@ -31,7 +31,7 @@ export default class AddFolder extends Component {
   };
 }
 
-AddFolder.propTypes={
-    active: PropTypes.bool.isRequired,
-    resetFunction: PropTypes.func.isRequired
+AddFolder.propTypes = {
+  active: PropTypes.bool.isRequired,
+  resetFunction: PropTypes.func.isRequired
 };

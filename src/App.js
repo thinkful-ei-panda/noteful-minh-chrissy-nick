@@ -28,17 +28,8 @@ class App extends React.Component {
   //then another GET request that will refresh state
   //this will trigger rerender
 
-  // handleDeleteNote = (noteId) => {
-  //   fetch(`http://localhost:9090/notes/${noteId}`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'content-type': 'application/json',
-  //     },
-  //   })
-  //     .then(this.sendGetRequest())
-  // };
-
   handleDeleteNote = (noteId) => {
+    console.log(noteId)
     fetch(`http://localhost:9090/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
@@ -49,7 +40,14 @@ class App extends React.Component {
         if (!res.ok) return res.json().then((e) => Promise.reject(e));
         return res.json();
       })
-      .then(() => this.sendGetRequest())
+      .then(() => {
+        // console.log('pre push')
+        // this.props.history.push('/');
+        // console.log('post push')
+        console.log('pre refresh')
+        this.sendGetRequest()
+        console.log('post refresh')
+      })
       .catch(
         error => this.setState({ error })
       )
@@ -156,7 +154,7 @@ class App extends React.Component {
               </section>
             </NotefulError>
             <NotefulError>
-              <main className="colomn">
+              <main className="column">
                 <Route exact
                   path="/"
                   component={NoteList} />

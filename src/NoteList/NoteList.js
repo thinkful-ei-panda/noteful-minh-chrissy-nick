@@ -5,13 +5,13 @@ import AddNote from '../AddNote/AddNote'
 
 export default class NoteList extends React.Component {
   static contextType = NotefulContext;
-    constructor(props) {
-      super(props);
-      this.state = {
-        displayAddFolder: false
-      }
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayAddFolder: false
     }
-    static contextType = NotefulContext;
+  }
+  static contextType = NotefulContext;
 
 
 
@@ -35,9 +35,9 @@ export default class NoteList extends React.Component {
 
   renderNewNoteForm() {
     console.log(`I came through~`)
-    let folderIdentity="b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1";
+    let folderIdentity = "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1";
     if (this.props.match.params.folderId) {
-      folderIdentity=this.props.match.params.folderId
+      folderIdentity = this.props.match.params.folderId
     };
     return (
       <AddNote
@@ -59,6 +59,7 @@ export default class NoteList extends React.Component {
         .map(note => {
           return <Note
             key={note.id}
+            history={this.props.history}
             id={note.id}
             name={note.name}
             dateMod={note.modified}
@@ -68,13 +69,14 @@ export default class NoteList extends React.Component {
       noteList = notes.map(note => {
         return <Note
           key={note.id}
+          history={this.props.history}
           id={note.id}
           name={note.name}
           dateMod={note.modified}
         />
       })
     }
-  
+
 
     return (
       <div>
@@ -86,4 +88,4 @@ export default class NoteList extends React.Component {
       </div>
     )
   }
- }
+}

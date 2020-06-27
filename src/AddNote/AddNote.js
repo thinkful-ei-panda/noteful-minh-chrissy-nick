@@ -15,12 +15,12 @@ export default class AddNote extends Component {
     event.preventDefault();
     this.props.resetFunction();
     const today = new Date();
-    this.context.post({ 
+    this.context.post({
       name: this.nameInput.current.value,
       modified: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
       folderId: this.props.folderId,
       content: this.bodyInput.current.value
-     }, "notes");
+    }, "notes");
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class AddNote extends Component {
 }
 
 AddNote.propTypes = {
-  active : PropTypes.bool.isRequired,
-  folderId : PropTypes.string.isRequired,
-  resetFunction : PropTypes.func.isRequired
+  active: PropTypes.bool.isRequired,
+  folderId: PropTypes.string.isRequired,
+  resetFunction: PropTypes.func.isRequired
 }
