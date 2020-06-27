@@ -20,6 +20,7 @@ export default class Note extends React.Component {
   handleClickDelete = e => {
     e.preventDefault();
     const noteId = this.props.id;
+
     this.props.history.push('/');
     this.context.deleteNote(noteId);
   }
