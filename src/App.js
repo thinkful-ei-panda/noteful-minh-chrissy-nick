@@ -41,7 +41,12 @@ class App extends React.Component {
         return res.json();
       })
       .then(() => {
+        // console.log('pre push')
+        // this.props.history.push('/');
+        // console.log('post push')
+        console.log('pre refresh')
         this.sendGetRequest()
+        console.log('post refresh')
       })
       .catch(
         error => this.setState({ error })
@@ -149,7 +154,7 @@ class App extends React.Component {
               </section>
             </NotefulError>
             <NotefulError>
-              <main className="colomn">
+              <main className="column">
                 <Route exact
                   path="/"
                   component={NoteList} />

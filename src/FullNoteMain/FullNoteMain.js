@@ -12,6 +12,7 @@ export default class FolderList extends React.Component {
     let note = <Note
       key={noteObj.id}
       id={noteObj.id}
+      history={this.props.history}
       name={noteObj.name}
       dateMod={noteObj.modified}
     />
