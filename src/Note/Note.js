@@ -6,14 +6,21 @@ import format from 'date-fns/format'
 import PropTypes from 'prop-types'
 
 export default class Note extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
+  }
+
   static defaultProps = {
     onDeleteNote: () => { },
+
   }
   static contextType = NotefulContext;
 
   handleClickDelete = e => {
     e.preventDefault();
     const noteId = this.props.id;
+    // this.props.history.push('/');
     this.context.deleteNote(noteId);
   }
 
