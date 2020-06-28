@@ -8,12 +8,6 @@ import FullNoteSide from './FullNoteSide/FullNoteSide'
 import NotefulError from './ErrorBoundary/ErrorBoundary'
 import './App.css';
 
-//TO RUN Noteful JSON Server
-//git clone https://github.com/tomatau/noteful-json-server
-//cd ./noteful-json-server
-//npm install
-//npm start
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -22,11 +16,6 @@ class App extends React.Component {
       notes: []
     };
   }
-
-  //the state should always be hydrated by data from database
-  //when we click delete somewhere else it should delete in database first
-  //then another GET request that will refresh state
-  //this will trigger rerender
 
   handleDeleteNote = (noteId) => {
     console.log(noteId)
@@ -41,12 +30,7 @@ class App extends React.Component {
         return res.json();
       })
       .then(() => {
-        // console.log('pre push')
-        // this.props.history.push('/');
-        // console.log('post push')
-        console.log('pre refresh')
         this.sendGetRequest()
-        console.log('post refresh')
       })
       .catch(
         error => this.setState({ error })

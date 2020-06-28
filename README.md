@@ -66,3 +66,12 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### JSON Server
+TO RUN Noteful JSON Server
+git clone https://github.com/tomatau/noteful-json-server
+cd ./noteful-json-server
+npm install
+npm start
+
+
