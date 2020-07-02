@@ -8,6 +8,7 @@ export default class AddNote extends Component {
     super(props);
     this.nameInput = React.createRef();
     this.bodyInput = React.createRef();
+    this.folderIdInput = React.createRef();
   }
 
   static contextType = NotefulContext;
@@ -19,9 +20,18 @@ export default class AddNote extends Component {
     this.context.post({
       name: this.nameInput.current.value,
       modified: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
-      folderId: this.props.folderId,
+      folderId: this.folderIdInput.current.value,
       content: this.bodyInput.current.value
     }, "notes");
+  }
+
+  mapFolders = () => {
+    const folders = this.context.folders.map(folder => {
+      return (
+        <option value={folder.id}>{folder.name}</option>
+      )
+    })
+    return folders;
   }
 
   render() {
@@ -31,6 +41,10 @@ export default class AddNote extends Component {
           <label htmlFor="add-note">Add Note</label>
           <input name="note-name" id="note-name" type="text" ref={this.nameInput} placeholder={'Note Name'} required></input>
           <input name="note-body" id="note-body" type="text" ref={this.bodyInput} placeholder={'Note Content'} required></input>
+          <label htmlFor="select-folder">Choose a folder</label>
+          <select id="select-folder" name="select-folder" ref={this.folderIdInput}>
+            {this.mapFolders()}
+          </select>
           <input type="submit" value="Submit" id="add-note-submit" />
           {/* after we update the list and click submit we should set state in folderList back to false */}
         </form>
