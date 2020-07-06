@@ -26,9 +26,9 @@ export default class AddNote extends Component {
   }
 
   mapFolders = () => {
-    const folders = this.context.folders.map(folder => {
+    const folders = this.context.folders.map((folder, idx) => {
       return (
-        <option value={folder.id}>{folder.name}</option>
+        <option key={idx} value={folder.id}>{folder.name}</option>
       )
     })
     return folders;

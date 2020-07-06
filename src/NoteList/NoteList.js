@@ -41,6 +41,7 @@ export default class NoteList extends React.Component {
     };
     return (
       <AddNote
+        key={folderIdentity}
         active={this.state.displayAddNote}
         folderId={folderIdentity}
         resetFunction={this.resetAddNoteState}
@@ -80,9 +81,9 @@ export default class NoteList extends React.Component {
 
     return (
       <div>
+        {this.state.displayAddNote && this.renderNewNoteForm()}
+        {!this.state.displayAddNote && this.renderCreateNewNoteButton()}
         <ul>
-          {this.state.displayAddNote && this.renderNewNoteForm()}
-          {!this.state.displayAddNote && this.renderCreateNewNoteButton()}
           {noteList}
         </ul>
       </div>
