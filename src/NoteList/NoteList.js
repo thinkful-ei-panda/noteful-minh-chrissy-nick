@@ -13,8 +13,6 @@ export default class NoteList extends React.Component {
   }
   static contextType = NotefulContext;
 
-
-
   handleAddNote = () => {
     this.setState({
       displayAddNote: true
@@ -34,7 +32,6 @@ export default class NoteList extends React.Component {
   }
 
   renderNewNoteForm() {
-    console.log(`I came through~`)
     let folderIdentity = "b0715efe-ffaf-11e8-8eb2-f2801f1b9fd1";
     if (this.props.match.params.folderId) {
       folderIdentity = this.props.match.params.folderId
@@ -49,21 +46,20 @@ export default class NoteList extends React.Component {
     )
   }
 
-
   render() {
     const { notes } = this.context;
     let noteList = [];
 
     if (this.props.match.params.folderId) {
       noteList = notes
-        .filter(note => note.folderId === this.props.match.params.folderId)
+        .filter(note => note.folder_id == this.props.match.params.folderId)
         .map(note => {
           return <Note
             key={note.id}
             history={this.props.history}
             id={note.id}
-            name={note.name}
-            dateMod={note.modified}
+            name={note.note_name}
+            dateMod={note.date_created}
           />
         })
     } else {
@@ -72,8 +68,8 @@ export default class NoteList extends React.Component {
           key={note.id}
           history={this.props.history}
           id={note.id}
-          name={note.name}
-          dateMod={note.modified}
+          name={note.note_name}
+          dateMod={note.date_created}
         />
       })
     }

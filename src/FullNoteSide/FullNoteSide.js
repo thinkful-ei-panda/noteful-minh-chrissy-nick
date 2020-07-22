@@ -7,10 +7,13 @@ export default class FolderList extends React.Component {
 
   render() {
     const { folders, notes } = this.context;
-    const noteObj = notes.find(note => note.id === this.props.match.params.noteId)
-    const folderId = noteObj.folderId;
+    console.log(this.context);
+    console.log(this.props.match.params.noteId);
+    const noteObj = notes.find(note => note.id == this.props.match.params.noteId)
+    console.log(noteObj);
+    const folderId = noteObj.folder_id;
 
-    const folderName = folders.find(folder => folder.id === folderId)
+    const folderName = folders.find(folder => folder.id == folderId)
 
     return (
       <div>
@@ -18,7 +21,7 @@ export default class FolderList extends React.Component {
           onClick={() => this.props.history.goBack()}
         >Go back
       </button>
-        <h2>{folderName.name}</h2>
+        <h2>{folderName.folder_name}</h2>
       </div >
     )
   }

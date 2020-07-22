@@ -7,14 +7,14 @@ export default class FolderList extends React.Component {
 
   render() {
     const notes = this.context.notes;
-    let noteObj = notes.find(note => note.id === this.props.match.params.noteId);
+    let noteObj = notes.find(note => note.id == this.props.match.params.noteId);
 
     let note = <Note
       key={noteObj.id}
       id={noteObj.id}
       history={this.props.history}
-      name={noteObj.name}
-      dateMod={noteObj.modified}
+      name={noteObj.note_name}
+      dateMod={noteObj.date_created}
     />
 
     return (

@@ -16,11 +16,9 @@ export default class AddNote extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.resetFunction();
-    const today = new Date();
     this.context.post({
-      name: this.nameInput.current.value,
-      modified: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
-      folderId: this.folderIdInput.current.value,
+      note_name: this.nameInput.current.value,
+      folder_id: this.folderIdInput.current.value,
       content: this.bodyInput.current.value
     }, "notes");
   }
@@ -28,7 +26,7 @@ export default class AddNote extends Component {
   mapFolders = () => {
     const folders = this.context.folders.map((folder, idx) => {
       return (
-        <option key={idx} value={folder.id}>{folder.name}</option>
+        <option key={idx} value={folder.id}>{folder.folder_name}</option>
       )
     })
     return folders;

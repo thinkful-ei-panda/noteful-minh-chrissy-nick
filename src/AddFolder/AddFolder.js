@@ -13,7 +13,7 @@ export default class AddFolder extends Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.resetFunction();
-    this.context.post({ name: this.nameInput.current.value }, "folders");
+    this.context.post({ folder_name: this.nameInput.current.value }, "folders");
   }
 
   render() {
