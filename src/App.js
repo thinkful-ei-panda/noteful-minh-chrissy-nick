@@ -6,6 +6,7 @@ import NoteList from './NoteList/NoteList'
 import FullNoteMain from './FullNoteMain/FullNoteMain'
 import FullNoteSide from './FullNoteSide/FullNoteSide'
 import NotefulError from './ErrorBoundary/ErrorBoundary'
+import config from './config';
 import './App.css';
 
 class App extends React.Component {
@@ -19,7 +20,7 @@ class App extends React.Component {
 
   handleDeleteNote = (noteId) => {
     console.log(noteId)
-    fetch(`http://localhost:8000/api/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'Authorization': 'Bearer 910237e9-95fd-4ecf-b17b-4af6605a1f01',
@@ -39,10 +40,10 @@ class App extends React.Component {
   };
 
   handleCreateFolder = (name) => {
-    fetch(`http://localhost:8000/api/folders/`, {
+    fetch(`${config.API_ENDPOINT}folders/`, {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer 910237e9-95fd-4ecf-b17b-4af6605a1f01',
+        'Authorization': `Bearer ${config.API_KEY}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify({
@@ -60,10 +61,10 @@ class App extends React.Component {
   }
 
   handlePostRequest = (body, destination) => {
-    fetch(`http://localhost:8000/api/${destination}/`, {
+    fetch(`${config.API_ENDPOINT}${destination}/`, {
       method: 'POST',
       headers: {
-        'Authorization': 'Bearer 910237e9-95fd-4ecf-b17b-4af6605a1f01',
+        'Authorization': `Bearer ${config.API_KEY}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify(body)
@@ -85,18 +86,18 @@ class App extends React.Component {
   // grabs notes and folders from server, then update state
   sendGetRequest() {
     Promise.all([
-      fetch('http://localhost:8000/api/notes', {
+      fetch(`${config.API_ENDPOINT}notes/`, {
         headers:
         {
-          'Authorization': 'Bearer 910237e9-95fd-4ecf-b17b-4af6605a1f01',
+          'Authorization': `Bearer ${config.API_KEY}`,
           'content-type': 'application/json',
         },
 
       }),
-      fetch('http://localhost:8000/api/folders', {
+      fetch(`${config.API_ENDPOINT}folders/`, {
         headers:
         {
-          'Authorization': 'Bearer 910237e9-95fd-4ecf-b17b-4af6605a1f01',
+          'Authorization': `Bearer ${config.API_KEY}`,
           'content-type': 'application/json',
         },
       })
